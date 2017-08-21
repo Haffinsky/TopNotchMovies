@@ -1,0 +1,134 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFF8D"
+    tools:context="com.haffa.topnotchmovies.DetailFragment">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#000"
+        >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/detail_backdrop_image_view"
+            />
+
+        <ImageView
+            android:layout_marginTop="100dp"
+            android:layout_marginLeft="30dp"
+            android:layout_width="120dp"
+            android:layout_height="200dp"
+            android:id="@+id/detail_poster_image_view"
+            />
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignRight="@+id/detail_backdrop_image_view"
+            android:layout_marginTop="210dp"
+            android:layout_marginRight="110dp"
+            android:id="@+id/rating_image_view"
+            android:src="@drawable/star"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/detail_backdrop_image_view"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="230dp"
+            android:layout_marginRight="45dp"
+            android:textSize="40dp"
+            android:textColor="#fff"
+            android:text="8.1"
+            android:id="@+id/rating_text_view"
+            />
+    </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:background="#000"
+            >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/detail_title_text_view"
+            android:textColor="#fff"
+            android:gravity="center"
+            android:textSize="27sp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            />
+
+            <com.ms.square.android.expandabletextview.ExpandableTextView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/expand_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                expandableTextView:maxCollapsedLines="3"
+                expandableTextView:animDuration="200">
+                <TextView
+                    android:id="@id/expandable_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:textSize="18sp"
+                    android:textColor="#fff" />
+                <ImageButton
+                    android:id="@id/expand_collapse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:layout_gravity="right|bottom"
+                    android:background="@android:color/transparent"/>
+
+            </com.ms.square.android.expandabletextview.ExpandableTextView>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:background="#000"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CAST"
+                android:textColor="#FFF"
+                android:gravity="center"
+                android:textSize="30sp"
+                />
+
+            <fragment android:name="com.haffa.topnotchmovies.CastFragment"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:id="@+id/fragment_cast">
+
+
+            </fragment>
+        </RelativeLayout>
+
+    </LinearLayout>
+</ScrollView>
