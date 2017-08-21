@@ -112,23 +112,29 @@
             android:background="#000"
             >
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="CAST"
-                android:textColor="#FFF"
-                android:gravity="center"
-                android:textSize="30sp"
-                />
-
             <fragment android:name="com.haffa.topnotchmovies.CastFragment"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="400dp"
                 android:id="@+id/fragment_cast">
 
 
             </fragment>
         </RelativeLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:background="#000"
+            >
+
+            <fragment android:name="com.haffa.topnotchmovies.SimilarMoviesFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fragment_similar">
+
+
+            </fragment>
+        </RelativeLayout>
     </LinearLayout>
 </ScrollView>

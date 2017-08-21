@@ -29,6 +29,15 @@ public class MovieDatabaseHelper extends SQLiteOpenHelper {
     public static final String GENDER = "gender";
     public static final String PROFILE_PATH = "profilePath";
 
+    public static final String SIMILAR_TABLE_NAME = "similar";
+
+    String SQL_CREATE_SIMILAR_TABLE =   "CREATE TABLE " + SIMILAR_TABLE_NAME + " (" +
+            ID + " INTEGER PRIMARY KEY, " +
+            POSTER_PATH + " TEXT UNIQUE, " +
+            TITLE + " TEXT NOT NULL " + " );";
+
+    String SQL_DROP_SIMILAR_TABLE = "DROP TABLE IF EXISTS " + SIMILAR_TABLE_NAME;
+
      String SQL_CREATE_CAST_TABLE =   "CREATE TABLE " + CAST_TABLE_NAME + " (" +
              ID + " INTEGER PRIMARY KEY, " +
              ACTOR_NAME + " TEXT UNIQUE, " +
@@ -68,6 +77,7 @@ public class MovieDatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(SQL_CREATE_MOVIE_TABLE);
         sqLiteDatabase.execSQL(SQL_CREATE_DETAIL_MOVIE_TABLE);
         sqLiteDatabase.execSQL(SQL_CREATE_CAST_TABLE);
+        sqLiteDatabase.execSQL(SQL_CREATE_SIMILAR_TABLE);
     }
 
     @Override
@@ -75,6 +85,7 @@ public class MovieDatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(SQL_DROP_MOVIE_TABLE);
         sqLiteDatabase.execSQL(SQL_DROP_DETAIL_MOVIE_TABLE);
         sqLiteDatabase.execSQL(SQL_DROP_CAST_TABLE);
+        sqLiteDatabase.execSQL(SQL_DROP_SIMILAR_TABLE);
         onCreate(sqLiteDatabase);
     }
 

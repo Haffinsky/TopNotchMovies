@@ -59,7 +59,6 @@ public class DataFetcher {
                     JSONObject rootJsonObject = new JSONObject(jsonResponse);
                     JSONArray resultJsonArray = rootJsonObject.getJSONArray("results");
 
-
                     for (int i = 0; i < resultJsonArray.length(); i++) {
                         JSONObject movieDetails = resultJsonArray.getJSONObject(i);
                         String title = movieDetails.getString("title");

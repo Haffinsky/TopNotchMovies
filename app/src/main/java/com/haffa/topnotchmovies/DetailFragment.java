@@ -126,7 +126,9 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 
         titleTextView.setText(data.getString(0));
 
-        overviewTextView.setText(data.getString(2));
+        if (!data.getString(2).equals("null")) {
+            overviewTextView.setText(data.getString(2));
+        }
     }
 
     @Override

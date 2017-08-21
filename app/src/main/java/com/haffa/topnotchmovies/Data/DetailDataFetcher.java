@@ -24,7 +24,9 @@ import static com.haffa.topnotchmovies.Data.MovieDatabaseHelper.CAST_TABLE_NAME;
 import static com.haffa.topnotchmovies.Data.MovieDatabaseHelper.CHARACTER_NAME;
 import static com.haffa.topnotchmovies.Data.MovieDatabaseHelper.GENDER;
 import static com.haffa.topnotchmovies.Data.MovieDatabaseHelper.MOVIE_DETAIL_TABLE_NAME;
+import static com.haffa.topnotchmovies.Data.MovieDatabaseHelper.POSTER_PATH;
 import static com.haffa.topnotchmovies.Data.MovieDatabaseHelper.PROFILE_PATH;
+import static com.haffa.topnotchmovies.Data.MovieDatabaseHelper.TITLE;
 import static com.haffa.topnotchmovies.Utilities.RetriveMyApplicationContext.getAppContext;
 
 /**
@@ -36,12 +38,19 @@ public class DetailDataFetcher {
     private final String LOG_TAG = DataFetcher.class.getSimpleName();
     private final OkHttpClient client = new OkHttpClient();
     MovieDatabaseHelper movieDatabaseHelper = new MovieDatabaseHelper(getAppContext());
+
     ContentResolver resolver = getAppContext().getContentResolver();
     ContentResolver castResolver = getAppContext().getContentResolver();
+    ContentResolver similarResolver = getAppContext().getContentResolver();
+
     ContentValues values = new ContentValues();
     ContentValues castValues = new ContentValues();
+    ContentValues similarValues = new ContentValues();
+
     Uri DETAIL_BASE_CONTENT_URI = Uri.parse("content://com.haffa.topnotchmovies/moviedetails");
     Uri CAST_BASE_CONTENT_URI = Uri.parse("content://com.haffa.topnotchmovies/cast");
+    Uri SIMILAR_BASE_CONTENT_URI = Uri.parse("content://com.haffa.topnotchmovies/similar");
+
     private String jsonResponse;
 
     public void run(String url) throws Exception {
@@ -105,6 +114,20 @@ public class DetailDataFetcher {
 
                                 castResolver.insert(CAST_BASE_CONTENT_URI, castValues);
                             }
+
+                    JSONObject similarJsonObject = rootJsonObject.getJSONObject("similar");
+                    JSONArray resultsJsonArray =  similarJsonObject.getJSONArray("results");
+                    for (int i = 0; i < resultsJsonArray.length() && i < 12; i++){
+                        JSONObject resultsJsonObject = resultsJsonArray.getJSONObject(i);
+
+                        String similarTitle = resultsJsonObject.getString("title");
+                        String similarPosterPath = resultsJsonObject.getString("poster_path");
+
+                        similarValues.put(TITLE, similarTitle);
+                        similarValues.put(POSTER_PATH, similarPosterPath);
+
+                        similarResolver.insert(SIMILAR_BASE_CONTENT_URI, similarValues);
+                    }
 
 
                 } catch (JSONException e) {

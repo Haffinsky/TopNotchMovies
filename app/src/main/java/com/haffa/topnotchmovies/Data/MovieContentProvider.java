@@ -29,6 +29,10 @@ public class MovieContentProvider extends ContentProvider {
     public static final int CAST = 300;
     public static final int CAST_ID = 301;
 
+    public static final String PATH_SIMILAR = "similar";
+    public static final int SIMILAR = 400;
+    public static final int SIMILAR_ID = 401;
+
     private static final UriMatcher uriMatcher = buildUriMatcher();
     private MovieDatabaseHelper movieDatabaseHelper;
 
@@ -44,6 +48,9 @@ public class MovieContentProvider extends ContentProvider {
 
         matcher.addURI(CONTENT_AUTHORITY, PATH_CAST, CAST);
         matcher.addURI(CONTENT_AUTHORITY, PATH_CAST + "/#", CAST_ID);
+
+        matcher.addURI(CONTENT_AUTHORITY, PATH_SIMILAR, SIMILAR);
+        matcher.addURI(CONTENT_AUTHORITY, PATH_SIMILAR + "/#", SIMILAR_ID);
 
         return matcher;
     }
@@ -62,10 +69,13 @@ public class MovieContentProvider extends ContentProvider {
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
         SQLiteQueryBuilder detailQueryBuilder = new SQLiteQueryBuilder();
         SQLiteQueryBuilder castQueryBuilder = new SQLiteQueryBuilder();
+        SQLiteQueryBuilder similarQueryBuilder = new SQLiteQueryBuilder();
+
 
         queryBuilder.setTables(MovieDatabaseHelper.TABLE_NAME);
         detailQueryBuilder.setTables(MovieDatabaseHelper.MOVIE_DETAIL_TABLE_NAME);
         castQueryBuilder.setTables(MovieDatabaseHelper.CAST_TABLE_NAME);
+        similarQueryBuilder.setTables(MovieDatabaseHelper.SIMILAR_TABLE_NAME);
 
         Cursor cursor = null;
         SQLiteDatabase sqLiteDatabase = movieDatabaseHelper.getWritableDatabase();
@@ -84,6 +94,10 @@ public class MovieContentProvider extends ContentProvider {
                 cursor = castQueryBuilder.query(sqLiteDatabase, strings, s, strings1,
                         null, null, s1);
                 break;
+            case SIMILAR:
+                cursor = similarQueryBuilder.query(sqLiteDatabase, strings, s, strings1,
+                        null, null, s1);
+                break;
             case MOVIES_ID:
                 queryBuilder.appendWhere(MovieDatabaseHelper.ID + "=" + uri.getLastPathSegment());
                 break;
@@ -92,6 +106,9 @@ public class MovieContentProvider extends ContentProvider {
                 break;
             case CAST_ID:
                 castQueryBuilder.appendWhere(MovieDatabaseHelper.ID + "=" + uri.getLastPathSegment());
+                break;
+            case SIMILAR_ID:
+                similarQueryBuilder.appendWhere(MovieDatabaseHelper.ID + "=" + uri.getLastPathSegment());
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);
@@ -126,6 +143,10 @@ public class MovieContentProvider extends ContentProvider {
             case CAST:
                 id = sqLiteDatabase.insert(MovieDatabaseHelper.CAST_TABLE_NAME, null, contentValues);
                 returnUri = Uri.parse(PATH_CAST  + "/" + id);
+                break;
+            case SIMILAR:
+                id = sqLiteDatabase.insert(MovieDatabaseHelper.SIMILAR_TABLE_NAME, null, contentValues);
+                returnUri = Uri.parse(PATH_SIMILAR  + "/" + id);
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);
