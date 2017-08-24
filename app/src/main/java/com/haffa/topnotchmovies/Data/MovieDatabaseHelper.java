@@ -37,7 +37,7 @@ public class MovieDatabaseHelper extends SQLiteOpenHelper {
     String SQL_CREATE_SEARCH_RESULTS_TABLE = "CREATE TABLE IF NOT EXISTS " + SEARCH_RESULTS_TABLE_NAME + " (" +
             ID + " INTEGER PRIMARY KEY, " +
             TITLE + " TEXT UNIQUE, " +
-            POSTER_PATH + " TEXT NOT NULL, " +
+            BACKDROP_PATH + " TEXT NOT NULL, " +
             MOVIE_ID + " TEXT NOT NULL " + " );";
 
     String SQL_DROP_SEARCH_RESULTS_TABLE = "DROP TABLE IF EXISTS " + SEARCH_RESULTS_TABLE_NAME;
@@ -111,21 +111,5 @@ public class MovieDatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(SQL_DROP_FAVORITE_TABLE);
         sqLiteDatabase.execSQL(SQL_DROP_SEARCH_RESULTS_TABLE);
         onCreate(sqLiteDatabase);
-    }
-
-    public void dropAndRecreateDatabase() {
-        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        sqLiteDatabase.execSQL(SQL_DROP_MOVIE_TABLE);
-        sqLiteDatabase.execSQL(SQL_CREATE_MOVIE_TABLE);
-    }
-    public void dropAndRecreateMovieDetailTable(){
-        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        sqLiteDatabase.execSQL(SQL_DROP_DETAIL_MOVIE_TABLE);
-        sqLiteDatabase.execSQL(SQL_CREATE_DETAIL_MOVIE_TABLE);
-    }
-    public void dropAndRecreateCastTable(){
-        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        sqLiteDatabase.execSQL(SQL_DROP_CAST_TABLE);
-        sqLiteDatabase.execSQL(SQL_CREATE_CAST_TABLE);
     }
 }

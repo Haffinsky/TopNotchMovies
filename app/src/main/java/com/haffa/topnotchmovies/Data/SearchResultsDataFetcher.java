@@ -64,11 +64,11 @@ public class SearchResultsDataFetcher {
                     for (int i = 0; i < resultJsonArray.length(); i++) {
                         JSONObject movieDetails = resultJsonArray.getJSONObject(i);
                         String title = movieDetails.getString("title");
-                        String posterPath = movieDetails.getString("poster_path");
+                        String backdropPath = movieDetails.getString("backdrop_path");
                         String movieId = movieDetails.getString("id");
 
                         values.put(MovieDatabaseHelper.TITLE, title);
-                        values.put(MovieDatabaseHelper.POSTER_PATH, posterPath);
+                        values.put(MovieDatabaseHelper.BACKDROP_PATH, backdropPath);
                         values.put(MovieDatabaseHelper.MOVIE_ID, movieId);
 
                         Log.v("TITLE", title);
