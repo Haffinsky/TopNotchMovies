@@ -5,10 +5,10 @@ import android.os.Bundle;
 
 import com.haffa.topnotchmovies.Data.DataFetcher;
 import com.haffa.topnotchmovies.Data.MovieDatabaseHelper;
+import com.haffa.topnotchmovies.Utilities.NavigationDrawer;
 
-import static com.haffa.topnotchmovies.Data.Urls.TEST_URL;
-import static com.haffa.topnotchmovies.Data.Urls.TEST_URL2;
-import static com.haffa.topnotchmovies.Utilities.RetriveMyApplicationContext.getAppContext;
+import static com.haffa.topnotchmovies.Data.Urls.NOW_PLAYING;
+import static com.haffa.topnotchmovies.Data.Urls.NOW_PLAYING2;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,11 +17,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         DataFetcher dataFetcher = new DataFetcher();
-        MovieDatabaseHelper movieDatabaseHelper = new MovieDatabaseHelper(this);
-        //movieDatabaseHelper.dropAndRecreateDatabase();
+        NavigationDrawer navigationDrawer = new NavigationDrawer();
+        navigationDrawer.addNavDrawer(this);
         try {
-            dataFetcher.run(TEST_URL);
-            dataFetcher.run(TEST_URL2);
+            dataFetcher.run(NOW_PLAYING);
+            dataFetcher.run(NOW_PLAYING2);
         } catch (Exception e) {
             e.printStackTrace();
         }

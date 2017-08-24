@@ -26,6 +26,7 @@ import static com.haffa.topnotchmovies.Data.MovieDatabaseHelper.GENDER;
 import static com.haffa.topnotchmovies.Data.MovieDatabaseHelper.MOVIE_DETAIL_TABLE_NAME;
 import static com.haffa.topnotchmovies.Data.MovieDatabaseHelper.POSTER_PATH;
 import static com.haffa.topnotchmovies.Data.MovieDatabaseHelper.PROFILE_PATH;
+import static com.haffa.topnotchmovies.Data.MovieDatabaseHelper.SIMILAR_TABLE_NAME;
 import static com.haffa.topnotchmovies.Data.MovieDatabaseHelper.TITLE;
 import static com.haffa.topnotchmovies.Utilities.RetriveMyApplicationContext.getAppContext;
 
@@ -76,6 +77,7 @@ public class DetailDataFetcher {
                 SQLiteDatabase db = movieDatabaseHelper.getWritableDatabase();
                 db.delete(MOVIE_DETAIL_TABLE_NAME, null, null);
                 db.delete(CAST_TABLE_NAME, null, null);
+                db.delete(SIMILAR_TABLE_NAME, null, null);
 
                 try {
                     JSONObject rootJsonObject = new JSONObject(jsonResponse);

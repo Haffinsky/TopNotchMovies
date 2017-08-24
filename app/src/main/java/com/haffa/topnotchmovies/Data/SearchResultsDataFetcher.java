@@ -19,27 +19,28 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-import static com.haffa.topnotchmovies.Data.MovieDatabaseHelper.MOVIE_DETAIL_TABLE_NAME;
+import static com.haffa.topnotchmovies.Data.MovieDatabaseHelper.SEARCH_RESULTS_TABLE_NAME;
 import static com.haffa.topnotchmovies.Data.MovieDatabaseHelper.TABLE_NAME;
 import static com.haffa.topnotchmovies.Utilities.RetriveMyApplicationContext.getAppContext;
 
 /**
- * Created by Rafal on 8/19/2017.
+ * Created by Rafal on 8/24/2017.
  */
 
-public class DataFetcher {
+public class SearchResultsDataFetcher {
 
-    private final String LOG_TAG = DataFetcher.class.getSimpleName();
     private final OkHttpClient client = new OkHttpClient();
     MovieDatabaseHelper movieDatabaseHelper = new MovieDatabaseHelper(getAppContext());
     ContentResolver resolver = getAppContext().getContentResolver();
     ContentValues values = new ContentValues();
-    Uri BASE_CONTENT_URI = Uri.parse("content://com.haffa.topnotchmovies/movies");
+    Uri BASE_CONTENT_URI = Uri.parse("content://com.haffa.topnotchmovies/searchresults");
     private String jsonResponse;
 
-    public void run(String url) throws Exception {
+    public void run(String queryParameter) throws Exception {
         final Request request = new Request.Builder()
-                .url(url)
+                .url("https://api.themoviedb.org/3/search/movie?api_key=8ddcee182fdd87b09acb4757c6890d2a&language=en-US&query= "
+                        + queryParameter +
+                        "&page=1&include_adult=false")
                 .build();
 
         client.newCall(request).enqueue(new Callback() {
@@ -52,13 +53,10 @@ public class DataFetcher {
             public void onResponse(Call call, Response response) throws IOException {
                 if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
 
-                Headers responseHeaders = response.headers();
-                for (int i = 0, size = responseHeaders.size(); i < size; i++) {
-                    Log.v(LOG_TAG, responseHeaders.name(i) + ": " + responseHeaders.value(i));
-                }
                 jsonResponse = response.body().string();
                 SQLiteDatabase db = movieDatabaseHelper.getWritableDatabase();
-                db.delete(TABLE_NAME, null, null);
+                db.delete(SEARCH_RESULTS_TABLE_NAME, null, null);
+
                 try {
                     JSONObject rootJsonObject = new JSONObject(jsonResponse);
                     JSONArray resultJsonArray = rootJsonObject.getJSONArray("results");
@@ -66,12 +64,14 @@ public class DataFetcher {
                     for (int i = 0; i < resultJsonArray.length(); i++) {
                         JSONObject movieDetails = resultJsonArray.getJSONObject(i);
                         String title = movieDetails.getString("title");
-                        String backdropPath = movieDetails.getString("backdrop_path");
+                        String posterPath = movieDetails.getString("poster_path");
                         String movieId = movieDetails.getString("id");
 
                         values.put(MovieDatabaseHelper.TITLE, title);
-                        values.put(MovieDatabaseHelper.BACKDROP_PATH, backdropPath);
+                        values.put(MovieDatabaseHelper.POSTER_PATH, posterPath);
                         values.put(MovieDatabaseHelper.MOVIE_ID, movieId);
+
+                        Log.v("TITLE", title);
 
                         resolver.insert(BASE_CONTENT_URI, values);
                     }
@@ -83,3 +83,4 @@ public class DataFetcher {
         });
     }
 }
+

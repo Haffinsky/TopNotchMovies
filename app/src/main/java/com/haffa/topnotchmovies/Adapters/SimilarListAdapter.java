@@ -20,7 +20,7 @@ import static com.haffa.topnotchmovies.Utilities.RetriveMyApplicationContext.get
  * Created by Rafal on 8/21/2017.
  */
 
-public class SimilarListAdapter  extends RecyclerView.Adapter<SimilarListAdapter.ViewHolder> {
+public class SimilarListAdapter extends RecyclerView.Adapter<SimilarListAdapter.ViewHolder> {
 
     Context mContext;
     Cursor cursor;
@@ -42,6 +42,8 @@ public class SimilarListAdapter  extends RecyclerView.Adapter<SimilarListAdapter
         Picasso.with(getAppContext()).load("http://image.tmdb.org/t/p/w185//" +
                 cursor.getString(1))
                 .into(holder.similarPosterView);
+
+        holder.similarTitleView.setText(cursor.getString(0));
     }
 
     @Override
@@ -58,12 +60,13 @@ public class SimilarListAdapter  extends RecyclerView.Adapter<SimilarListAdapter
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView similarPosterView;
-        private TextView actorNameView;
+        private TextView similarTitleView;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             similarPosterView = itemView.findViewById(R.id.similar_poster_view);
+            similarTitleView = itemView.findViewById(R.id.similar_movie_title_view);
         }
     }
 }

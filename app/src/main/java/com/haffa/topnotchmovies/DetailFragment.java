@@ -1,11 +1,14 @@
 package com.haffa.topnotchmovies;
 
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -15,11 +18,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.haffa.topnotchmovies.Data.DetailDataFetcher;
 import com.haffa.topnotchmovies.Data.MovieContentProvider;
 import com.haffa.topnotchmovies.Data.MovieDatabaseHelper;
+import com.haffa.topnotchmovies.Utilities.NavigationDrawer;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
@@ -43,8 +49,12 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     ImageView posterImageView;
     TextView ratingTextView;
     TextView titleTextView;
+    ScrollView scrollView;
     ExpandableTextView overviewTextView;
-
+    ContentResolver resolver = getAppContext().getContentResolver();
+    ContentValues values = new ContentValues();
+    Uri BASE_CONTENT_URI_FAVORITES = Uri.parse("content://com.haffa.topnotchmovies/favorite");
+    Cursor cursor;
 
     public DetailFragment() {
     }
@@ -60,24 +70,45 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
+
         getLoaderManager().initLoader(DETAIL_MOVIES_LOADER, null, this);
 
         View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
+
+        scrollView = rootView.findViewById(R.id.scroll_view);
 
         backdropImageView = (ImageView) rootView.findViewById(R.id.detail_backdrop_image_view);
         posterImageView = (ImageView) rootView.findViewById(R.id.detail_poster_image_view);
         ratingTextView = (TextView) rootView.findViewById(R.id.rating_text_view);
         titleTextView = (TextView) rootView.findViewById(R.id.detail_title_text_view);
         overviewTextView = (ExpandableTextView) rootView.findViewById(R.id.expand_text_view);
+        FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
+        Intent intent = getActivity().getIntent();
 
+        final String title = intent.getStringExtra("title");
+        final String backdropPath = intent.getStringExtra("backdropPath");
+        final String movieId = intent.getStringExtra("movieID");
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getAppContext(), "saving to favorites ", Toast.LENGTH_SHORT).show();
+
+                values.put(MovieDatabaseHelper.MOVIE_ID, movieId);
+                values.put(MovieDatabaseHelper.TITLE, title);
+                values.put(MovieDatabaseHelper.BACKDROP_PATH, backdropPath);
+
+                resolver.insert(BASE_CONTENT_URI_FAVORITES, values);
+
+                Log.v("Inserting: ", title + " " + movieId + " " + backdropPath);
+            }
+        });
 
         return rootView;
     }
@@ -106,7 +137,9 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-
+        scrollView.scrollTo(0, backdropImageView.getTop());
+        scrollView.setFocusableInTouchMode(true);
+        scrollView.setDescendantFocusability(ViewGroup.FOCUS_BEFORE_DESCENDANTS);
         data.moveToPosition(0);
 
         Picasso.with(getAppContext())

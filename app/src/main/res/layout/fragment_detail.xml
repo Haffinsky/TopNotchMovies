@@ -2,8 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scroll_view"
     android:background="#FFFF8D"
     tools:context="com.haffa.topnotchmovies.DetailFragment">
+
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -20,6 +23,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:focusedByDefault="true"
             android:id="@+id/detail_backdrop_image_view"
             />
 
@@ -53,6 +57,21 @@
             android:text="8.1"
             android:id="@+id/rating_text_view"
             />
+
+            <android.support.design.widget.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fabSize="normal"
+                android:id="@+id/fab"
+                android:background="#000"
+                android:src="@drawable/ic_favorite_black_24dp"
+                android:scaleType="center"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"
+
+                />
+
     </RelativeLayout>
 
         <LinearLayout
@@ -82,6 +101,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
+                android:focusable="false"
                 expandableTextView:maxCollapsedLines="3"
                 expandableTextView:animDuration="200">
                 <TextView
@@ -129,12 +149,17 @@
             >
 
             <fragment android:name="com.haffa.topnotchmovies.SimilarMoviesFragment"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/fragment_similar">
+                android:id="@+id/fragment_similar"
+                >
 
 
             </fragment>
         </RelativeLayout>
+
+
+
     </LinearLayout>
+
 </ScrollView>

@@ -33,6 +33,14 @@ public class MovieContentProvider extends ContentProvider {
     public static final int SIMILAR = 400;
     public static final int SIMILAR_ID = 401;
 
+    public static final String PATH_FAVORITE = "favorite";
+    public static final int FAVORITE = 500;
+    public static final int FAVORITE_ID = 501;
+
+    public static final String PATH_SEARCH_RESULTS = "searchresults";
+    public static final int SEARCH_RESULTS = 600;
+    public static final int SEARCH_RESULTS_ID = 601;
+
     private static final UriMatcher uriMatcher = buildUriMatcher();
     private MovieDatabaseHelper movieDatabaseHelper;
 
@@ -52,6 +60,12 @@ public class MovieContentProvider extends ContentProvider {
         matcher.addURI(CONTENT_AUTHORITY, PATH_SIMILAR, SIMILAR);
         matcher.addURI(CONTENT_AUTHORITY, PATH_SIMILAR + "/#", SIMILAR_ID);
 
+        matcher.addURI(CONTENT_AUTHORITY, PATH_FAVORITE, FAVORITE);
+        matcher.addURI(CONTENT_AUTHORITY, PATH_FAVORITE + "/#", FAVORITE_ID);
+
+        matcher.addURI(CONTENT_AUTHORITY, PATH_SEARCH_RESULTS, SEARCH_RESULTS);
+        matcher.addURI(CONTENT_AUTHORITY, PATH_SEARCH_RESULTS + "/#", SEARCH_RESULTS_ID);
+
         return matcher;
     }
 
@@ -70,12 +84,16 @@ public class MovieContentProvider extends ContentProvider {
         SQLiteQueryBuilder detailQueryBuilder = new SQLiteQueryBuilder();
         SQLiteQueryBuilder castQueryBuilder = new SQLiteQueryBuilder();
         SQLiteQueryBuilder similarQueryBuilder = new SQLiteQueryBuilder();
-
+        SQLiteQueryBuilder favoriteQueryBuilder = new SQLiteQueryBuilder();
+        SQLiteQueryBuilder searchResultsQueryBuilder = new SQLiteQueryBuilder();
 
         queryBuilder.setTables(MovieDatabaseHelper.TABLE_NAME);
         detailQueryBuilder.setTables(MovieDatabaseHelper.MOVIE_DETAIL_TABLE_NAME);
         castQueryBuilder.setTables(MovieDatabaseHelper.CAST_TABLE_NAME);
         similarQueryBuilder.setTables(MovieDatabaseHelper.SIMILAR_TABLE_NAME);
+        favoriteQueryBuilder.setTables(MovieDatabaseHelper.FAVORITE_TABLE_NAME);
+        searchResultsQueryBuilder.setTables(MovieDatabaseHelper.SEARCH_RESULTS_TABLE_NAME);
+
 
         Cursor cursor = null;
         SQLiteDatabase sqLiteDatabase = movieDatabaseHelper.getWritableDatabase();
@@ -98,6 +116,14 @@ public class MovieContentProvider extends ContentProvider {
                 cursor = similarQueryBuilder.query(sqLiteDatabase, strings, s, strings1,
                         null, null, s1);
                 break;
+            case FAVORITE:
+                cursor = favoriteQueryBuilder.query(sqLiteDatabase, strings, s, strings1,
+                        null, null, s1);
+                break;
+            case SEARCH_RESULTS:
+                cursor = searchResultsQueryBuilder.query(sqLiteDatabase, strings, s, strings1,
+                        null, null, s1);
+                break;
             case MOVIES_ID:
                 queryBuilder.appendWhere(MovieDatabaseHelper.ID + "=" + uri.getLastPathSegment());
                 break;
@@ -109,6 +135,12 @@ public class MovieContentProvider extends ContentProvider {
                 break;
             case SIMILAR_ID:
                 similarQueryBuilder.appendWhere(MovieDatabaseHelper.ID + "=" + uri.getLastPathSegment());
+                break;
+            case FAVORITE_ID:
+                favoriteQueryBuilder.appendWhere(MovieDatabaseHelper.ID + "=" + uri.getLastPathSegment());
+                break;
+            case SEARCH_RESULTS_ID:
+                searchResultsQueryBuilder.appendWhere(MovieDatabaseHelper.ID + "=" + uri.getLastPathSegment());
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);
@@ -147,6 +179,14 @@ public class MovieContentProvider extends ContentProvider {
             case SIMILAR:
                 id = sqLiteDatabase.insert(MovieDatabaseHelper.SIMILAR_TABLE_NAME, null, contentValues);
                 returnUri = Uri.parse(PATH_SIMILAR  + "/" + id);
+                break;
+            case FAVORITE:
+                id = sqLiteDatabase.insert(MovieDatabaseHelper.FAVORITE_TABLE_NAME, null, contentValues);
+                returnUri = Uri.parse(PATH_FAVORITE  + "/" + id);
+                break;
+            case SEARCH_RESULTS:
+                id = sqLiteDatabase.insert(MovieDatabaseHelper.SEARCH_RESULTS_TABLE_NAME, null, contentValues);
+                returnUri = Uri.parse(SEARCH_RESULTS  + "/" + id);
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);
