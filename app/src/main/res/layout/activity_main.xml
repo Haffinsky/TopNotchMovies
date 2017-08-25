@@ -7,15 +7,15 @@
     tools:context="com.haffa.topnotchmovies.MainActivity">
 
     <FrameLayout
+        android:id="@+id/grid_fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/grid_fragment_container">
+        android:layout_height="match_parent">
 
         <fragment
+            android:id="@+id/fragment_welcome_menu"
             android:name="com.haffa.topnotchmovies.MovieListFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/fragment_welcome_menu">
+            android:layout_height="match_parent">
 
         </fragment>
     </FrameLayout>

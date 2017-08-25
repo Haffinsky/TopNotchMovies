@@ -2,13 +2,12 @@ package com.haffa.topnotchmovies;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -22,13 +21,9 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.haffa.topnotchmovies.Data.DetailDataFetcher;
 import com.haffa.topnotchmovies.Data.MovieContentProvider;
 import com.haffa.topnotchmovies.Data.MovieDatabaseHelper;
-import com.haffa.topnotchmovies.Utilities.NavigationDrawer;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
-import com.squareup.picasso.MemoryPolicy;
-import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import static com.haffa.topnotchmovies.Data.MovieDatabaseHelper.BACKDROP_PATH;
@@ -112,8 +107,9 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 
         return rootView;
     }
+
     @Override
-    public void onPause(){
+    public void onPause() {
         super.onPause();
     }
 
@@ -143,8 +139,8 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
         data.moveToPosition(0);
 
         Picasso.with(getAppContext())
-               .load("http://image.tmdb.org/t/p/w500//" + data.getString(1))
-               .into(backdropImageView);
+                .load("http://image.tmdb.org/t/p/w500//" + data.getString(1))
+                .into(backdropImageView);
 
         Picasso.with(getAppContext())
                 .load("http://image.tmdb.org/t/p/w185//" + data.getString(5))

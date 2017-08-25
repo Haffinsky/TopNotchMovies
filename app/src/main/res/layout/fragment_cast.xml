@@ -2,20 +2,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFF8D"
+    android:background="@color/backgroundLight"
     android:orientation="vertical"
     tools:context="com.haffa.topnotchmovies.CastFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#000"
+        android:background="@color/backgroundDark"
         android:text="CAST"
         android:textColor="#FFF"
         android:gravity="center"
-        android:paddingTop="10dp"
-        android:paddingBottom="5dp"
-        android:textSize="25sp"
+        android:paddingTop="@dimen/cast_text_view_padding_top"
+        android:paddingBottom="@dimen/cast_text_view_padding_bottom"
+        android:textSize="@dimen/cast_text_view_text_size"
         />
     <!-- TODO: Update blank fragment layout -->
     <android.support.v7.widget.RecyclerView

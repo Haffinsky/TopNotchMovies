@@ -8,15 +8,15 @@
     tools:context="com.haffa.topnotchmovies.FavoritesActivity">
 
     <FrameLayout
+        android:id="@+id/favorites_fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/favorites_fragment_container">
+        android:layout_height="match_parent">
 
         <fragment
+            android:id="@+id/fragment_fav"
             android:name="com.haffa.topnotchmovies.FavoritesFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/fragment_fav"
             tools:layout="@layout/fragment_favorites">
 
         </fragment>

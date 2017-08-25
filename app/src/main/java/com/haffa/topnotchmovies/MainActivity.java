@@ -1,7 +1,9 @@
 package com.haffa.topnotchmovies;
 
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 import com.haffa.topnotchmovies.Data.DataFetcher;
 import com.haffa.topnotchmovies.Data.MovieDatabaseHelper;
@@ -25,6 +27,12 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        View parent_layout = findViewById(R.id.grid_fragment_container);
+        Snackbar snackbar = Snackbar
+                .make(parent_layout, "                        " +
+                        "Swipe ----> for more options", Snackbar.LENGTH_LONG);
+        snackbar.show();
     }
 
 }

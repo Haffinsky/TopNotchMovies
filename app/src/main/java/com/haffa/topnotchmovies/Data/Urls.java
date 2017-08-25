@@ -17,5 +17,6 @@ public class Urls {
             "https://api.themoviedb.org/3/movie/top_rated?api_key=8ddcee182fdd87b09acb4757c6890d2a&language=en-US&page=1";
     public static final String TOP_RATED2 =
             "https://api.themoviedb.org/3/movie/top_rated?api_key=8ddcee182fdd87b09acb4757c6890d2a&language=en-US&page=2";
-
+    public static final String UPCOMING_URL =
+            "https://api.themoviedb.org/3/movie/upcoming?api_key=8ddcee182fdd87b09acb4757c6890d2a&language=en-US&page=1";
 }

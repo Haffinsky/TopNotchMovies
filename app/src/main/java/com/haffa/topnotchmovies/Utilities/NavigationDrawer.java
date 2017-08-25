@@ -1,19 +1,11 @@
 package com.haffa.topnotchmovies.Utilities;
 
 import android.app.Activity;
-import android.app.DialogFragment;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.text.InputType;
-import android.util.Log;
 import android.view.View;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.haffa.topnotchmovies.Data.DataFetcher;
-import com.haffa.topnotchmovies.Data.Urls;
-import com.haffa.topnotchmovies.DetailActivity;
 import com.haffa.topnotchmovies.FavoritesActivity;
-import com.haffa.topnotchmovies.MainActivity;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
@@ -27,6 +19,7 @@ import static com.haffa.topnotchmovies.Data.Urls.POPULAR;
 import static com.haffa.topnotchmovies.Data.Urls.POPULAR2;
 import static com.haffa.topnotchmovies.Data.Urls.TOP_RATED;
 import static com.haffa.topnotchmovies.Data.Urls.TOP_RATED2;
+import static com.haffa.topnotchmovies.Data.Urls.UPCOMING_URL;
 import static com.haffa.topnotchmovies.Utilities.RetriveMyApplicationContext.getAppContext;
 
 /**
@@ -35,7 +28,7 @@ import static com.haffa.topnotchmovies.Utilities.RetriveMyApplicationContext.get
 
 public class NavigationDrawer {
 
-    public void addNavDrawer(final Activity activity){
+    public void addNavDrawer(final Activity activity) {
 
         final DataFetcher dataFetcher = new DataFetcher();
 
@@ -50,13 +43,13 @@ public class NavigationDrawer {
         final SecondaryDrawerItem NOW_PLAYING222 = new SecondaryDrawerItem().withIdentifier(2)
                 .withName("NOW PLAYING");
         final SecondaryDrawerItem TOP_RATED_MOVIES = new SecondaryDrawerItem().withIdentifier(3)
-                .withName("TOP RATED MOVIE");
+                .withName("TOP RATED MOVIES");
+        final SecondaryDrawerItem UPCOMING = new SecondaryDrawerItem().withIdentifier(6)
+                .withName("UPCOMING MOVIES");
         final SecondaryDrawerItem SEARCH = new SecondaryDrawerItem().withIdentifier(4)
                 .withName("SEARCH");
         final SecondaryDrawerItem FAVORITES = new SecondaryDrawerItem().withIdentifier(5)
                 .withName("FAVORITES");
-
-
 
 
         new DrawerBuilder()
@@ -73,11 +66,12 @@ public class NavigationDrawer {
                         new DividerDrawerItem(),
                         POPULAR_MOVIES,
                         NOW_PLAYING222,
-                        TOP_RATED_MOVIES
+                        TOP_RATED_MOVIES,
+                        UPCOMING
                 ).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
             @Override
             public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                switch ((int) drawerItem.getIdentifier()){
+                switch ((int) drawerItem.getIdentifier()) {
                     case 1:
                         try {
                             dataFetcher.run(POPULAR);
@@ -110,9 +104,17 @@ public class NavigationDrawer {
                     case 4:
                         SearchDialog searchDialog = new SearchDialog();
                         searchDialog.showSearchDialog(activity);
+                        break;
+                    case 6:
+                        try {
+                            dataFetcher.run(UPCOMING_URL);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                 }
                 return false;
-            }})
+            }
+        })
                 .build();
     }
 }

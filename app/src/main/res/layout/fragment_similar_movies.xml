@@ -2,14 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFF8D"
+    android:background="@color/backgroundLight"
     android:orientation="vertical"
     tools:context="com.haffa.topnotchmovies.SimilarMoviesFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#000"
+        android:background="@color/backgroundDark"
         android:text="SIMILAR MOVIES"
         android:textColor="#FFF"
         android:gravity="center"
