@@ -34,9 +34,7 @@ public class SimilarMoviesFragment extends Fragment implements LoaderManager.Loa
     RecyclerView recyclerView;
     SimilarListAdapter adapter;
 
-    public SimilarMoviesFragment() {
-        // Required empty public constructor
-    }
+    public SimilarMoviesFragment() {}
 
 
     public static SimilarMoviesFragment newInstance() {

@@ -82,44 +82,44 @@ public class DetailDataFetcher {
                 try {
                     JSONObject rootJsonObject = new JSONObject(jsonResponse);
 
-                        String title = rootJsonObject.getString("title");
-                        String backdropPath = rootJsonObject.getString("backdrop_path");
-                        String overview = rootJsonObject.getString("overview");
-                        String movieId = rootJsonObject.getString("id");
-                        String posterPath = rootJsonObject.getString("poster_path");
-                        String vote = rootJsonObject.getString("vote_average");
+                    String title = rootJsonObject.getString("title");
+                    String backdropPath = rootJsonObject.getString("backdrop_path");
+                    String overview = rootJsonObject.getString("overview");
+                    String movieId = rootJsonObject.getString("id");
+                    String posterPath = rootJsonObject.getString("poster_path");
+                    String vote = rootJsonObject.getString("vote_average");
 
-                        values.put(MovieDatabaseHelper.TITLE, title);
-                        values.put(MovieDatabaseHelper.BACKDROP_PATH, backdropPath);
-                        values.put(MovieDatabaseHelper.OVERVIEW, overview);
-                        values.put(MovieDatabaseHelper.MOVIE_ID, movieId);
-                        values.put(MovieDatabaseHelper.VOTE, vote);
-                        values.put(MovieDatabaseHelper.POSTER_PATH, posterPath);
+                    values.put(MovieDatabaseHelper.TITLE, title);
+                    values.put(MovieDatabaseHelper.BACKDROP_PATH, backdropPath);
+                    values.put(MovieDatabaseHelper.OVERVIEW, overview);
+                    values.put(MovieDatabaseHelper.MOVIE_ID, movieId);
+                    values.put(MovieDatabaseHelper.VOTE, vote);
+                    values.put(MovieDatabaseHelper.POSTER_PATH, posterPath);
 
-                        resolver.insert(DETAIL_BASE_CONTENT_URI, values);
+                    resolver.insert(DETAIL_BASE_CONTENT_URI, values);
 
                     JSONObject creditsJsonObject = rootJsonObject.getJSONObject("credits");
                     JSONArray castJsonArray = creditsJsonObject.getJSONArray("cast");
 
-                        for (int i = 0; i < castJsonArray.length() && i < 10; i++){
-                                JSONObject castJsonObject = castJsonArray.getJSONObject(i);
+                    for (int i = 0; i < castJsonArray.length() && i < 10; i++) {
+                        JSONObject castJsonObject = castJsonArray.getJSONObject(i);
 
-                                String actorName = castJsonObject.getString("name");
-                                String characterName = castJsonObject.getString("character");
-                                String profilePath = castJsonObject.getString("profile_path");
-                                String gender = castJsonObject.getString("gender");
+                        String actorName = castJsonObject.getString("name");
+                        String characterName = castJsonObject.getString("character");
+                        String profilePath = castJsonObject.getString("profile_path");
+                        String gender = castJsonObject.getString("gender");
 
-                                castValues.put(ACTOR_NAME, actorName);
-                                castValues.put(CHARACTER_NAME, characterName);
-                                castValues.put(PROFILE_PATH, profilePath);
-                                castValues.put(GENDER, gender);
+                        castValues.put(ACTOR_NAME, actorName);
+                        castValues.put(CHARACTER_NAME, characterName);
+                        castValues.put(PROFILE_PATH, profilePath);
+                        castValues.put(GENDER, gender);
 
-                                castResolver.insert(CAST_BASE_CONTENT_URI, castValues);
-                            }
+                        castResolver.insert(CAST_BASE_CONTENT_URI, castValues);
+                    }
 
                     JSONObject similarJsonObject = rootJsonObject.getJSONObject("similar");
-                    JSONArray resultsJsonArray =  similarJsonObject.getJSONArray("results");
-                    for (int i = 0; i < resultsJsonArray.length() && i < 12; i++){
+                    JSONArray resultsJsonArray = similarJsonObject.getJSONArray("results");
+                    for (int i = 0; i < resultsJsonArray.length() && i < 12; i++) {
                         JSONObject resultsJsonObject = resultsJsonArray.getJSONObject(i);
 
                         String similarTitle = resultsJsonObject.getString("title");

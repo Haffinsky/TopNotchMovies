@@ -174,19 +174,19 @@ public class MovieContentProvider extends ContentProvider {
                 break;
             case CAST:
                 id = sqLiteDatabase.insert(MovieDatabaseHelper.CAST_TABLE_NAME, null, contentValues);
-                returnUri = Uri.parse(PATH_CAST  + "/" + id);
+                returnUri = Uri.parse(PATH_CAST + "/" + id);
                 break;
             case SIMILAR:
                 id = sqLiteDatabase.insert(MovieDatabaseHelper.SIMILAR_TABLE_NAME, null, contentValues);
-                returnUri = Uri.parse(PATH_SIMILAR  + "/" + id);
+                returnUri = Uri.parse(PATH_SIMILAR + "/" + id);
                 break;
             case FAVORITE:
                 id = sqLiteDatabase.insert(MovieDatabaseHelper.FAVORITE_TABLE_NAME, null, contentValues);
-                returnUri = Uri.parse(PATH_FAVORITE  + "/" + id);
+                returnUri = Uri.parse(PATH_FAVORITE + "/" + id);
                 break;
             case SEARCH_RESULTS:
                 id = sqLiteDatabase.insert(MovieDatabaseHelper.SEARCH_RESULTS_TABLE_NAME, null, contentValues);
-                returnUri = Uri.parse(SEARCH_RESULTS  + "/" + id);
+                returnUri = Uri.parse(SEARCH_RESULTS + "/" + id);
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);

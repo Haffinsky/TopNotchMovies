@@ -11,12 +11,6 @@ public class RetriveMyApplicationContext extends Application {
 
     private static RetriveMyApplicationContext mRetriveMyApplicationContext;
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        mRetriveMyApplicationContext = this;
-    }
-
     public static RetriveMyApplicationContext getInstance() {
 
         return mRetriveMyApplicationContext;
@@ -25,5 +19,11 @@ public class RetriveMyApplicationContext extends Application {
     public static Context getAppContext() {
 
         return mRetriveMyApplicationContext.getApplicationContext();
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        mRetriveMyApplicationContext = this;
     }
 }

@@ -5,6 +5,37 @@
     android:background="@color/backgroundLight"
     tools:context="com.haffa.topnotchmovies.SearchResultsListFragment">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/toolbar_container"
+            android:background="?colorPrimaryDark"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="10dp"
+            android:fitsSystemWindows="true"
+            android:gravity="bottom">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?colorPrimaryDark">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/logo" />
+
+            </android.support.v7.widget.Toolbar>
+        </android.support.design.widget.AppBarLayout>
+
     <!-- TODO: Update blank fragment layout -->
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
@@ -12,4 +43,5 @@
         android:id="@+id/search_results_movie_recycler_view">
     </android.support.v7.widget.RecyclerView>
 
+</LinearLayout>
 </LinearLayout>

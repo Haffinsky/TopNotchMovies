@@ -7,12 +7,10 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,8 +68,6 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
 
         getLoaderManager().initLoader(DETAIL_MOVIES_LOADER, null, this);
 
@@ -90,6 +86,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
         final String title = intent.getStringExtra("title");
         final String backdropPath = intent.getStringExtra("backdropPath");
         final String movieId = intent.getStringExtra("movieID");
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,8 +97,6 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
                 values.put(MovieDatabaseHelper.BACKDROP_PATH, backdropPath);
 
                 resolver.insert(BASE_CONTENT_URI_FAVORITES, values);
-
-                Log.v("Inserting: ", title + " " + movieId + " " + backdropPath);
             }
         });
 

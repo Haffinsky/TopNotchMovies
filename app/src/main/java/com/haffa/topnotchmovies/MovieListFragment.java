@@ -69,6 +69,7 @@ public class MovieListFragment extends Fragment implements LoaderManager.LoaderC
         adapter = new MovieListAdapter(getActivity());
         recyclerView = rootView.findViewById(R.id.movie_recycler_view);
 
+        //changing layout manager depending on device orientation
         if (getResources().getConfiguration().orientation == 1){
             recyclerView.setLayoutManager(linearLayoutManager);
         } else {

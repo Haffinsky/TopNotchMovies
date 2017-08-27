@@ -13,27 +13,23 @@ public class MovieDatabaseHelper extends SQLiteOpenHelper {
     public static final String TITLE = "movieTitle";
     public static final String BACKDROP_PATH = "backdropPath";
     public static final String MOVIE_ID = "movieID";
-    static final String DATABASE_NAME = "movies.db";
-    static final String TABLE_NAME = "movies";
-    static final int DATABASE_VERSION = 1;
-    static final String ID = "id";
     //tables in the db
     public static final String MOVIE_DETAIL_TABLE_NAME = "moviedetails";
     public static final String POSTER_PATH = "posterPath";
     public static final String OVERVIEW = "overview";
     public static final String VOTE = "vote";
-
     public static final String CAST_TABLE_NAME = "cast";
     public static final String ACTOR_NAME = "actorName";
     public static final String CHARACTER_NAME = "characterName";
     public static final String GENDER = "gender";
     public static final String PROFILE_PATH = "profilePath";
-
     public static final String SIMILAR_TABLE_NAME = "similar";
     public static final String FAVORITE_TABLE_NAME = "favorite";
-
     public static final String SEARCH_RESULTS_TABLE_NAME = "searchresults";
-
+    static final String DATABASE_NAME = "movies.db";
+    static final String TABLE_NAME = "movies";
+    static final int DATABASE_VERSION = 1;
+    static final String ID = "id";
     String SQL_CREATE_SEARCH_RESULTS_TABLE = "CREATE TABLE IF NOT EXISTS " + SEARCH_RESULTS_TABLE_NAME + " (" +
             ID + " INTEGER PRIMARY KEY, " +
             TITLE + " TEXT UNIQUE, " +
@@ -51,19 +47,19 @@ public class MovieDatabaseHelper extends SQLiteOpenHelper {
     String SQL_DROP_FAVORITE_TABLE = "DROP TABLE IF EXISTS " + FAVORITE_TABLE_NAME;
 
 
-    String SQL_CREATE_SIMILAR_TABLE =   "CREATE TABLE " + SIMILAR_TABLE_NAME + " (" +
+    String SQL_CREATE_SIMILAR_TABLE = "CREATE TABLE " + SIMILAR_TABLE_NAME + " (" +
             ID + " INTEGER PRIMARY KEY, " +
             POSTER_PATH + " TEXT UNIQUE, " +
             TITLE + " TEXT NOT NULL " + " );";
 
     String SQL_DROP_SIMILAR_TABLE = "DROP TABLE IF EXISTS " + SIMILAR_TABLE_NAME;
 
-     String SQL_CREATE_CAST_TABLE =   "CREATE TABLE " + CAST_TABLE_NAME + " (" +
-             ID + " INTEGER PRIMARY KEY, " +
-             ACTOR_NAME + " TEXT UNIQUE, " +
-             CHARACTER_NAME + " TEXT NOT NULL, " +
-             GENDER + " TEXT NOT NULL, " +
-             PROFILE_PATH + " TEXT NOT NULL " + " );";
+    String SQL_CREATE_CAST_TABLE = "CREATE TABLE " + CAST_TABLE_NAME + " (" +
+            ID + " INTEGER PRIMARY KEY, " +
+            ACTOR_NAME + " TEXT UNIQUE, " +
+            CHARACTER_NAME + " TEXT NOT NULL, " +
+            GENDER + " TEXT NOT NULL, " +
+            PROFILE_PATH + " TEXT NOT NULL " + " );";
 
     String SQL_DROP_CAST_TABLE = "DROP TABLE IF EXISTS " + CAST_TABLE_NAME;
 

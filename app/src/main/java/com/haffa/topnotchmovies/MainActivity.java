@@ -10,8 +10,9 @@ import com.haffa.topnotchmovies.Data.DataFetcher;
 import com.haffa.topnotchmovies.Data.MovieDatabaseHelper;
 import com.haffa.topnotchmovies.Utilities.NavigationDrawer;
 
-import static com.haffa.topnotchmovies.Data.Urls.NOW_PLAYING;
-import static com.haffa.topnotchmovies.Data.Urls.NOW_PLAYING2;
+import static com.haffa.topnotchmovies.Data.Urls.TOP_RATED;
+import static com.haffa.topnotchmovies.Data.Urls.TOP_RATED2;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,18 +23,19 @@ public class MainActivity extends AppCompatActivity {
         DataFetcher dataFetcher = new DataFetcher();
         NavigationDrawer navigationDrawer = new NavigationDrawer();
         navigationDrawer.addNavDrawer(this);
+        //downloading top rated movies info
         try {
-            dataFetcher.run(NOW_PLAYING);
-            dataFetcher.run(NOW_PLAYING2);
+            dataFetcher.run(TOP_RATED);
+            dataFetcher.run(TOP_RATED2);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        //adding snackbar
         View parent_layout = findViewById(R.id.grid_fragment_container);
         Snackbar snackbar = Snackbar
                 .make(parent_layout, "                        " +
                         "Swipe ----> for more options", Snackbar.LENGTH_LONG);
         snackbar.show();
     }
-
 }

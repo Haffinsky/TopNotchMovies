@@ -1,7 +1,6 @@
 package com.haffa.topnotchmovies.Utilities;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.text.InputType;
@@ -10,10 +9,7 @@ import android.util.Log;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.haffa.topnotchmovies.Data.SearchResultsDataFetcher;
-import com.haffa.topnotchmovies.DetailActivity;
 import com.haffa.topnotchmovies.SearchResultsActivity;
-
-import static com.haffa.topnotchmovies.Utilities.RetriveMyApplicationContext.getAppContext;
 
 /**
  * Created by Rafal on 8/24/2017.
@@ -21,7 +17,7 @@ import static com.haffa.topnotchmovies.Utilities.RetriveMyApplicationContext.get
 
 public class SearchDialog {
 
-    public void showSearchDialog(final Activity act){
+    public void showSearchDialog(final Activity act) {
 
         new MaterialDialog.Builder(act)
                 .content("Search for a movie")

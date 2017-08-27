@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.haffa.topnotchmovies.Data.DataFetcher;
 import com.haffa.topnotchmovies.FavoritesActivity;
+import com.haffa.topnotchmovies.R;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
@@ -15,8 +16,6 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import static com.haffa.topnotchmovies.Data.Urls.NOW_PLAYING;
 import static com.haffa.topnotchmovies.Data.Urls.NOW_PLAYING2;
-import static com.haffa.topnotchmovies.Data.Urls.POPULAR;
-import static com.haffa.topnotchmovies.Data.Urls.POPULAR2;
 import static com.haffa.topnotchmovies.Data.Urls.TOP_RATED;
 import static com.haffa.topnotchmovies.Data.Urls.TOP_RATED2;
 import static com.haffa.topnotchmovies.Data.Urls.UPCOMING_URL;
@@ -33,13 +32,11 @@ public class NavigationDrawer {
         final DataFetcher dataFetcher = new DataFetcher();
 
         PrimaryDrawerItem item1 = new PrimaryDrawerItem()
-                .withSelectable(false).withName("DRAWABLE PLACEHOLDER");
+                .withSelectable(false).withIcon(R.drawable.movie_icon);
         PrimaryDrawerItem topNotchMovies = new PrimaryDrawerItem()
                 .withSelectable(false).withName("TOP NOTCH MOVIES");
         PrimaryDrawerItem selectMovie = new PrimaryDrawerItem()
                 .withSelectable(false).withName("WHAT MOVIES WOULD YOU LIKE TO SEE?");
-        final SecondaryDrawerItem POPULAR_MOVIES = new SecondaryDrawerItem().withIdentifier(1)
-                .withName("POPULAR MOVIES");
         final SecondaryDrawerItem NOW_PLAYING222 = new SecondaryDrawerItem().withIdentifier(2)
                 .withName("NOW PLAYING");
         final SecondaryDrawerItem TOP_RATED_MOVIES = new SecondaryDrawerItem().withIdentifier(3)
@@ -64,7 +61,6 @@ public class NavigationDrawer {
                         new DividerDrawerItem(),
                         selectMovie,
                         new DividerDrawerItem(),
-                        POPULAR_MOVIES,
                         NOW_PLAYING222,
                         TOP_RATED_MOVIES,
                         UPCOMING
@@ -72,14 +68,6 @@ public class NavigationDrawer {
             @Override
             public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                 switch ((int) drawerItem.getIdentifier()) {
-                    case 1:
-                        try {
-                            dataFetcher.run(POPULAR);
-                            dataFetcher.run(POPULAR2);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        break;
                     case 2:
                         try {
                             dataFetcher.run(NOW_PLAYING);

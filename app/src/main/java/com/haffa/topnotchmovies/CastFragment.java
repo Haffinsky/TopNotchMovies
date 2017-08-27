@@ -1,6 +1,5 @@
 package com.haffa.topnotchmovies;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,11 +17,9 @@ import com.haffa.topnotchmovies.Adapters.CastListAdapter;
 import com.haffa.topnotchmovies.Data.MovieContentProvider;
 
 import static com.haffa.topnotchmovies.Data.MovieDatabaseHelper.ACTOR_NAME;
-import static com.haffa.topnotchmovies.Data.MovieDatabaseHelper.BACKDROP_PATH;
 import static com.haffa.topnotchmovies.Data.MovieDatabaseHelper.CHARACTER_NAME;
 import static com.haffa.topnotchmovies.Data.MovieDatabaseHelper.GENDER;
 import static com.haffa.topnotchmovies.Data.MovieDatabaseHelper.PROFILE_PATH;
-
 import static com.haffa.topnotchmovies.Utilities.RetriveMyApplicationContext.getAppContext;
 
 
@@ -34,12 +30,9 @@ public class CastFragment extends Fragment implements LoaderManager.LoaderCallba
     CastListAdapter adapter;
     RecyclerView recyclerView;
 
-    public CastFragment() {
-    }
+    public CastFragment() {}
 
-
-    // TODO: Rename and change types and number of parameters
-    public static CastFragment newInstance(String param1, String param2) {
+    public static CastFragment newInstance() {
         CastFragment fragment = new CastFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
