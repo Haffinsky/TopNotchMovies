@@ -26,5 +26,25 @@
     <dimen name="detail_poster_width">120dp</dimen>
     <dimen name="detail_poster_margin_left">30dp</dimen>
     <dimen name="detail_poster_margin_right">100dp</dimen>
-    
+    <dimen name="detail_rating_view_margin_left">40dp</dimen>
+    <dimen name="detail_rating_view_margin_right">45dp</dimen>
+    <dimen name="detail_rating_view_margin_top">230dp</dimen>
+    <dimen name="detail_fab_margin">10dp</dimen>
+    <dimen name="detail_separator_margin">5dp</dimen>
+    <dimen name="detail_text_size">27sp</dimen>
+    <dimen name="detail_expandable_text_view_margin_top">10dp</dimen>
+    <dimen name="detail_expandable_text_view_margin_bottom">5dp</dimen>
+    <dimen name="detail_expandable_text_margin">10dp</dimen>
+    <dimen name="detail_expandable_text_size">18sp</dimen>
+    <dimen name="detail_arrow_padding">16dp</dimen>
+    <dimen name="detail_cast_frag_height">400dp</dimen>
+    <!-- similar_row_item -->
+    <dimen name="similar_image_view_width">160dp</dimen>
+    <dimen name="similar_imagie_view_height">250dp</dimen>
+    <dimen name="similar_text_view_text_size">20sp</dimen>
+    <dimen name="similar_image_view_padding">10dp</dimen>
+    <dimen name="similar_title_view_padding_top">15dp</dimen>
+    <dimen name="similar_title_view_padding_bottom">5dp</dimen>
+
+
 </resources>

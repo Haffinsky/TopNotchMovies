@@ -2,36 +2,35 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="wrap_content"
     android:background="@color/backgroundDark"
-    android:layout_margin="1dp"
-    android:layout_height="250dp">
+    android:layout_margin="@dimen/cast_row_margin"
+    android:layout_height="@dimen/similar_imagie_view_height">
 
     <ImageView
-        android:layout_width="160dp"
-        android:layout_height="250dp"
+        android:layout_width="@dimen/similar_image_view_width"
+        android:layout_height="@dimen/similar_imagie_view_height"
         android:scaleType="fitXY"
         android:id="@+id/similar_poster_view"
         />
 
     <LinearLayout
-        android:layout_width="160dp"
+        android:layout_width="@dimen/similar_image_view_width"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_alignBottom="@+id/similar_poster_view"
         android:background="#99000000"
-        android:paddingBottom="10dp">
+        android:paddingBottom="@dimen/similar_image_view_padding">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="2"
-            android:textSize="20sp"
+            android:textSize="@dimen/similar_text_view_text_size"
             android:textColor="#FFFFFF"
             android:ellipsize="end"
-            android:text="DADADA"
             android:gravity="center_horizontal"
             android:id="@+id/similar_movie_title_view"
-            android:paddingTop="15dp"
-            android:paddingBottom="5dp"
+            android:paddingTop="@dimen/similar_title_view_padding_top"
+            android:paddingBottom="@dimen/similar_title_view_padding_bottom"
             />
 
     </LinearLayout>

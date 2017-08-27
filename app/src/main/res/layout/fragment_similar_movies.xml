@@ -13,9 +13,9 @@
         android:text="SIMILAR MOVIES"
         android:textColor="#FFF"
         android:gravity="center"
-        android:paddingTop="10dp"
-        android:paddingBottom="5dp"
-        android:textSize="25sp"
+        android:paddingTop="@dimen/cast_text_view_padding_top"
+        android:paddingBottom="@dimen/cast_text_view_padding_bottom"
+        android:textSize="@dimen/cast_text_view_text_size"
         />
 
     <!-- TODO: Update blank fragment layout -->

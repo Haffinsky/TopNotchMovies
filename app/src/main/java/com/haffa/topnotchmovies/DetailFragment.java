@@ -136,6 +136,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
         scrollView.scrollTo(0, backdropImageView.getTop());
         scrollView.setFocusableInTouchMode(true);
         scrollView.setDescendantFocusability(ViewGroup.FOCUS_BEFORE_DESCENDANTS);
+
         data.moveToPosition(0);
 
         Picasso.with(getAppContext())

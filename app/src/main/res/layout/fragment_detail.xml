@@ -46,9 +46,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignRight="@+id/detail_backdrop_image_view"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="45dp"
-                android:layout_marginTop="230dp"
+                android:layout_marginLeft="@dimen/detail_rating_view_margin_left"
+                android:layout_marginRight="@dimen/detail_rating_view_margin_right"
+                android:layout_marginTop="@dimen/detail_rating_view_margin_top"
                 android:text="8.1"
                 android:textColor="#fff"
                 android:textSize="40dp" />
@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
-                android:layout_margin="10dp"
+                android:layout_margin="@dimen/detail_fab_margin"
                 android:background="@color/backgroundDark"
                 android:scaleType="center"
                 android:src="@drawable/fav_icon1"
@@ -73,7 +73,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/detail_separator_margin"
             android:background="@color/backgroundDark"
             android:orientation="vertical">
 
@@ -85,15 +85,15 @@
                 android:gravity="center"
                 android:maxLines="2"
                 android:textColor="#fff"
-                android:textSize="27sp" />
+                android:textSize="@dimen/detail_text_size" />
 
             <com.ms.square.android.expandabletextview.ExpandableTextView xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/expand_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginBottom="@dimen/detail_expandable_text_view_margin_bottom"
+                android:layout_marginTop="@dimen/detail_expandable_text_view_margin_top"
                 android:focusable="false"
                 expandableTextView:animDuration="200"
                 expandableTextView:maxCollapsedLines="3">
@@ -102,10 +102,10 @@
                     android:id="@id/expandable_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="@dimen/detail_expandable_text_margin"
+                    android:layout_marginRight="@dimen/detail_expandable_text_margin"
                     android:textColor="#fff"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/detail_expandable_text_size" />
 
                 <ImageButton
                     android:id="@id/expand_collapse"
@@ -113,7 +113,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="right|bottom"
                     android:background="@android:color/transparent"
-                    android:padding="16dp" />
+                    android:padding="@dimen/detail_arrow_padding" />
 
             </com.ms.square.android.expandabletextview.ExpandableTextView>
 
@@ -122,7 +122,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/detail_separator_margin"
             android:background="@color/backgroundDark"
             android:orientation="vertical">
 
@@ -130,7 +130,7 @@
                 android:id="@+id/fragment_cast"
                 android:name="com.haffa.topnotchmovies.CastFragment"
                 android:layout_width="match_parent"
-                android:layout_height="400dp">
+                android:layout_height="@dimen/detail_cast_frag_height">
 
 
             </fragment>
@@ -139,7 +139,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/detail_separator_margin"
             android:background="@color/backgroundDark">
 
             <fragment

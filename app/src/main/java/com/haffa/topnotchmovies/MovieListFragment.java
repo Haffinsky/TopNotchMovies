@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -62,9 +63,18 @@ public class MovieListFragment extends Fragment implements LoaderManager.LoaderC
         SQLiteDatabase sqLiteDatabase = movieDatabaseHelper.getReadableDatabase();
 
 
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getAppContext(), 2);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getAppContext());
+
         adapter = new MovieListAdapter(getActivity());
         recyclerView = rootView.findViewById(R.id.movie_recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getAppContext()));
+
+        if (getResources().getConfiguration().orientation == 1){
+            recyclerView.setLayoutManager(linearLayoutManager);
+        } else {
+            recyclerView.setLayoutManager(gridLayoutManager);
+        }
+
         recyclerView.getRecycledViewPool().clear();
         adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);

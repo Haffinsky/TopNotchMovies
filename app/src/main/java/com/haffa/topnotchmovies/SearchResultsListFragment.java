@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -49,9 +50,18 @@ public class SearchResultsListFragment extends Fragment implements LoaderManager
 
         getLoaderManager().initLoader(SEARCH_RESULTS_LOADER, null, this);
 
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getAppContext(), 2);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getAppContext());
+
         adapter = new SearchResultsListAdapter(getActivity());
         recyclerView = rootView.findViewById(R.id.search_results_movie_recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getAppContext()));
+
+        if (getResources().getConfiguration().orientation == 1){
+            recyclerView.setLayoutManager(linearLayoutManager);
+        } else {
+            recyclerView.setLayoutManager(gridLayoutManager);
+        }
+        
         recyclerView.getRecycledViewPool().clear();
         adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);

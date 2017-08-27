@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -48,9 +49,18 @@ public class FavoritesFragment extends Fragment implements LoaderManager.LoaderC
 
         getLoaderManager().initLoader(FAVORITES_LOADER, null, this);
 
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getAppContext(), 2);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getAppContext());
+
         adapter = new FavoritesListAdapter(getAppContext());
         recyclerView = rootView.findViewById(R.id.favorite_movie_recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getAppContext()));
+
+        if (getResources().getConfiguration().orientation == 1){
+            recyclerView.setLayoutManager(linearLayoutManager);
+        } else {
+            recyclerView.setLayoutManager(gridLayoutManager);
+        }
+
         recyclerView.getRecycledViewPool().clear();
         adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
